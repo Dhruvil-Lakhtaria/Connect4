@@ -1,13 +1,90 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font: 14px "Century Gothic", Futura, sans-serif;
+  margin: 20px;
+  background: cyan;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+ol, ul {
+  padding-left: 30px;
+}
+
+
+.board-col {
+  display: block;
+  width: 100px;
+}
+
+.board-col:after {
+  clear: both;
+  content: "";
+  display:table;
+}
+
+.status {
+  margin-bottom: 10px;
+  font-size: 32px;
+  color: darkgreen;
+  text-align: center;
+}
+
+.square {
+  background: darkblue;
+  border: 1px solid #999;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 100px;
+  height: 80px;
+}
+
+.circle {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  background: black;
+  margin: auto;
+}
+
+.red-player {
+  background: red;
+}
+
+.yellow-player {
+  background: yellow;
+}
+
+.game-board {
+  width: 700px;
+  height: 500px;
+  display: flex;
+  margin: auto;
+}
+
+.square:focus {
+  outline: none;
+}
+
+.kbd-navigation .square:focus {
+  background: #ddd;
+}
+
+.game {
+  align-items: center;
+}
+
+.game-info {
+  margin-left: 100px;
+}
+
+h1 {
+  font-size: 64px;
+  color: orange;
+  text-align: center;
+  width: 400px;
+  margin: auto;
 }
