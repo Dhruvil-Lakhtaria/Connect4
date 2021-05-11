@@ -14,7 +14,7 @@ I have put dollar signs where you need to fill up
 function Square(props) {
     return (
       <button className="square" onClick={() => props.onClick()}>
-        <div className={props.value === 'Red' ? "Red" : props.value === 'Yellow' ? "Yellow" : "circle"}></div>
+        <div className={props.value === 'Red' ? "circle red-player" : props.value === 'Yellow' ? "circle yellow-player" : "circle"}></div>
       </button>
     );
 }
@@ -31,7 +31,7 @@ class Col extends React.Component {
 
     renderSquare(i) {
      return(
-        <Square value = {Col[i]} onClick = {this.props.onClick} />
+        <Square value = {this.props.value[i]}  onClick = {this.props.onClick} />
      );
     }
   
@@ -70,7 +70,8 @@ class Board extends React.Component {
         const val = this.state.boardValue.slice();
         const curPlayer = this.state.redIsNext? 'Red' : 'Yellow';
         let findResult;
-        console.log({col})
+        val[0][0]  = 'Yellow';
+
         /*val is our current board
         check for the [col][0-5] which is the first free cell
         since in connect4 there can only be 1 position 
@@ -93,6 +94,10 @@ class Board extends React.Component {
         boardValue will be val
         redIsNext should be complemented
         winner assign curWinner*/
+        this.setState({boardValue:val,
+                       redIsNext : !this.state.redIsNext,
+                        winner : null });
+        
     }
 
     renderCol(i) {
@@ -100,12 +105,13 @@ class Board extends React.Component {
         Pass the onclick handler and
         that column's values */
         return(
-            <Col onClick = {() => this.handleClick(Col)} value = {this.state.boardValue[i]} />
+            <Col onClick = {() => this.handleClick(i)} value = {this.state.boardValue[i]} />
         );
     }
 
     render() {
-        var status;
+        const nextPlayer = this.state.redIsNext ? 'RED' : 'YELLOW'; 
+        var status = this.state.winner ? 'WINNER : ' + this.state.winner: 'NEXT PLAYER : ' + nextPlayer;
         // If there exists a winner status should show winner is ---
         // Else status should show next player is ---
         // Use the state values winner and isRedNext for doing the above conditions easily
@@ -137,7 +143,9 @@ since the game is not over, don't return true there
 */
 
 function check(a, b, c, d) {
-
+    if(a === b && b === c && c === d && a)
+    return true;
+    return false;
 }
 
 /*
@@ -148,20 +156,39 @@ and pass it to the check function to see if they are all the same
 I have checked for all vertical conditions
 In a similar manner check for the other 3 directions
 */
-
 function gameOver(board) {
     //VERTICAL
     for (let c = 0; c < 7; c++)
         for (let r = 0; r < 3; r++)
             if (check(board[c][r], board[c][r+1], board[c][r+2], board[c][r+3]))
                 return true;
-    
     //HORIZONTAL
-
+            for(let r = 0;r<6;r++)
+            {
+                for(let c = 0;c<4;c++)
+                {
+                    if(check(board[c][r],board[c+1][r],board[c+2][r],board[c+3][r]))
+                    return true;
+                }
+            }
     //DIAGONAL
-    
+            for(let c = 0;c <4;c++)
+            {
+                for(let r = 0;r <3;r++)
+                {
+                    if(check(board[c][r],board[c+1][r+1],board[c+2][r+2],board[c+3][r+3]))
+                    return true;
+                }
+            }
     //ANTIDIAGONAL
-
+            for(let c= 6;c>2;c--)
+            {
+                for(let r = 0;r<3;r++)
+                {
+                    if(check(board[c][r],board[c-1][r+1],board[c-2][r+2],board[c-3][r+3]))
+                    return true;
+                }
+            }
     return null;
 }
 
