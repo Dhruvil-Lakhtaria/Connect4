@@ -66,11 +66,13 @@ class Board extends React.Component {
         /* Check if there exists a winner 
         If winner is not null then return since game is over 
         and any other click should not continue playing*/
+        if(this.state.winner !== null)
+        return;
 
         const val = this.state.boardValue.slice();
         const curPlayer = this.state.redIsNext? 'Red' : 'Yellow';
         let findResult;
-        val[0][0]  = 'Yellow';
+        
 
         /*val is our current board
         check for the [col][0-5] which is the first free cell
@@ -83,20 +85,35 @@ class Board extends React.Component {
         of the loop and there is no empty cell that implies the column
         is filled, so return immediately since the play is not possible
         NEED to use some jump statements like return, break, goto, continue etc...*/
-
+        let level = null;
+       
+            for(let i = 5 ;i>=0;i--)
+            {  
+                if(val[col][i] === null)
+                {
+                level = i;
+                val[col][i] = curPlayer;
+                break;
+                }
+            }
+            if(level === null)
+            return;
+        
+        
 
         /*THE BELOW LINE CHECKS IF GAME IS OVER NOW
         if it is we know that the curPlayer has won since 
         he is the one who made the move*/
+        findResult = gameOver(val);
         var curWinner = findResult? curPlayer : null;
 
         /*call this.setState now
-        boardValue will be val
+        boardValue wisll be val
         redIsNext should be complemented
         winner assign curWinner*/
         this.setState({boardValue:val,
                        redIsNext : !this.state.redIsNext,
-                        winner : null });
+                        winner : curWinner });
         
     }
 
