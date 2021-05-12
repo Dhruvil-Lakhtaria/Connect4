@@ -29,7 +29,7 @@ ol, ul {
 
 .square {
   background: darkblue;
-  border: 1px solid #999;
+  border: 1px outset #999;
   float: left;
   font-size: 24px;
   font-weight: bold;
@@ -86,5 +86,22 @@ h1 {
   color: orange;
   text-align: center;
   width: 400px;
+  margin: auto;
+}
+.btn{
+  width: 250px;
+  height: 75px;
+  background-color: rgb(63, 62, 59);
+  color: rgb(255, 255, 255);
+  font-size: x-large;
+}
+.btn:hover
+{
+  background-color:rgb(48, 47, 46) ;
+}
+.reset
+{
+  width: 250px;
+  height: 75px;
   margin: auto;
 }
