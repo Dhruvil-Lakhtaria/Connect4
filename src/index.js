@@ -146,13 +146,10 @@ function check(a, b, c, d) {
 function isFull(board)
 {
    for(let c = 0;c < 7; c++)
-   {
-       for(let r = 0;r < 6;r++)
-       {
-           if(board[c][r] === null)
+    {       
+           if(board[c][0] === null)
            return false;
-       }
-   } 
+    } 
    return true;
 }
 
