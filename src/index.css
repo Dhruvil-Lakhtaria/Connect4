@@ -1,13 +1,13 @@
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
   margin: 20px;
-  background: rgb(180, 219, 219);
+  background:  #b2aaff;
+
 }
 
 ol, ul {
   padding-left: 30px;
 }
-
 
 .board-col {
   display: block;
@@ -23,12 +23,12 @@ ol, ul {
 .status {
   margin-bottom: 10px;
   font-size: 32px;
-  color: darkgreen;
+  color: rgb(108, 248, 108);
   text-align: center;
 }
 
 .square {
-  background: darkblue;
+  background: rgb(2, 39, 160);
   border: 1px outset #999;
   float: left;
   font-size: 24px;
@@ -51,11 +51,11 @@ ol, ul {
 }
 
 .red-player {
-  background: red;
+  background: rgb(172, 12, 12);
 }
 
 .yellow-player {
-  background: yellow;
+  background: rgb(204, 175, 14);
 }
 
 .game-board {
@@ -75,6 +75,7 @@ ol, ul {
 
 .game {
   align-items: center;
+  z-index: 2;
 }
 
 .game-info {
@@ -83,7 +84,7 @@ ol, ul {
 
 h1 {
   font-size: 64px;
-  color: orange;
+  color: rgb(221, 255, 31);
   text-align: center;
   width: 400px;
   margin: auto;
@@ -105,3 +106,4 @@ h1 {
   height: 75px;
   margin: auto;
 }
+
