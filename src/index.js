@@ -2,11 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-/*
-Square is just a function component
-When clicked it puts the appropriate design from css file
-*/
-
 function Square(props) {
     return (
       <button className="square" onClick={() => props.onClick()}>
@@ -38,9 +33,7 @@ class Col extends React.Component {
 }
 
 class Board extends React.Component {
-    //Default constructor values
-    //NOTE: our board array is column x row format 
-    //hence 7 x 6
+    
     constructor() {
         super();
         this.state = {
@@ -90,6 +83,8 @@ class Board extends React.Component {
                 pos = c;
               }
               beta  = beta>best?best:beta;
+              if(alpha>beta)
+              break;
           }
           else
           {
@@ -143,9 +138,7 @@ class Board extends React.Component {
             });
     }
     handleClick(col) {
-        /* Check if there exists a winner 
-        If winner is not null then return since game is over 
-        and any other click should not continue playing*/
+     
         if(this.state.winner !== null )
         return;
 
@@ -167,9 +160,6 @@ class Board extends React.Component {
             if(level === null)
             return;
 
-        /*THE BELOW LINE CHECKS IF GAME IS OVER NOW
-        if it is we know that the curPlayer has won since 
-        he is the one who made the move*/
         findResult = gameOver(val);
         var curWinner = findResult? curPlayer : null;
 
@@ -178,7 +168,7 @@ class Board extends React.Component {
             redIsNext: !this.state.redIsNext,
             winner: curWinner,},
             () =>   {
-                        this.AIplay(); // Call to function for computer to take it's turn
+                        this.AIplay(); 
                     }
                     );
     }
@@ -318,13 +308,6 @@ function isFull(board)
    return true;
 }
 
-/*
-Function to check if the game is over
-check if there exists a winner
-take all possible combinations of 4 that can win
-and pass it to the check function to see if they are all the same
-*/
-
 function gameOver(board) {
     //VERTICAL
     for (let c = 0; c < 7; c++)
@@ -361,10 +344,6 @@ function gameOver(board) {
     return null;
 }
 
-/* 
-Topmost Component Game
-*/
-
 class Game extends React.Component {
     render() {
         return (
@@ -377,8 +356,6 @@ class Game extends React.Component {
     }
 }
 
-// ========================================
-// Entry Point of Code, Dont change anything
 ReactDOM.render(
   <Game />,
   document.getElementById('root')
