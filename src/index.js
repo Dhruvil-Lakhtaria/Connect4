@@ -207,51 +207,30 @@ class Board extends React.Component {
         );
     }
 }
-function calc(a,b,c,d)
-{
-   var r = 0;
-   var y = 0;
-   
-    if(a === 'Red')
-    r++;
-    if(b === 'Red')
-    r++;
-    if(c === 'Red')
-    r++;
-    if(d === 'Red')
-    r++;
 
-    if(a === 'Yellow')
-    y++;
-    if(b === 'Yellow')
-    y++;
-    if(c === 'Yellow')
-    y++;
-    if(d === 'Yellow')
-    y++;
+function calc(a, b, c, d) {
+  var r = 0;
+  var y = 0;
 
-    if(y === 4 && r === 0)
-    return 5000;
+  if (a === "Red") r++;
+  if (b === "Red") r++;
+  if (c === "Red") r++;
+  if (d === "Red") r++;
 
-    else if(y === 3 && r === 0)
-    return 50;
+  if (a === "Yellow") y++;
+  if (b === "Yellow") y++;
+  if (c === "Yellow") y++;
+  if (d === "Yellow") y++;
 
-    else if(y === 2 && r === 0)
-    return 4;
-
-    else if(y === 0  && r === 4)
-    return -3000;
-
-    else if(y === 0  && r === 3)
-    return -100;
-
-    else if(y === 0  && r === 2)
-    return -10;
-
-    else
-    return 0;
-   
+  if (y === 4 && r === 0) return 5000;
+  else if (y === 3 && r === 0) return 50;
+  else if (y === 2 && r === 0) return 4;
+  else if (y === 0 && r === 4) return -3000;
+  else if (y === 0 && r === 3) return -100;
+  else if (y === 0 && r === 2) return -10;
+  else return 0;
 }
+
 function getScore(board)
 {
     var total = 0;
@@ -297,9 +276,7 @@ function check(a, b, c, d) {
     return false;
 }
 
-
-function isFull(board)
-{
+function isFull(board){
    for(let c = 0;c < 7; c++)
     {       
            if(board[c][5] === null)
@@ -308,47 +285,147 @@ function isFull(board)
    return true;
 }
 
-function gameOver(board,col,row) {
+function gameOver(board,col,row){
     //VERTICAL
     if(row <=2)
     {
-        if(check(board[col][row],board[col][row+1],board[col][row+2],board[col][row+3]))
+        for(let i = 0;i<= row;i++)
+        if(check(board[col][i],board[col][i+1],board[col][i+2],board[col][i+3]))
         return true;
     }
     else if(row > 2 && row <=5)
     {
-        if(check(board[col][row],board[col][row-1],board[col][row-2],board[col][row-3]))
+        for(let i = 6;i>=row;i--)
+        if(check(board[col][i],board[col][i-1],board[col][i-2],board[col][i-3]))
         return true;
     }
 
     //HORIZONTAL
     if(col<= 3)
     {
-        if(check(board[col][row],board[col+1][row],board[col+2][row],board[col+3][row]))
-        return true;
+        for(let  i = 0;i<=col;i++)
+        {
+            if(check(board[i][row],board[i+1][row],board[i+2][row],board[i+3][row]))
+            return true;
+        }
     }
     else if(col>3 && col <= 6)
     {
-        if(check(board[col][row],board[col-1][row],board[col-2][row],board[col-3][row]))
-        return true;  
+        for(let i = 6;i>= col;i--)
+        {
+            if(check(board[i][row],board[i-1][row],board[i-2][row],board[i-3][row]))
+            return true;
+        }
     }
 
     //DIAGONAL
-    if(row >= 3 && row <= 5  && col <= 3)
-    {
-        if(check(board[col][row],board[col+1][row-1],board[col+2][row-2],board[col+3][row-3]))
-        return true;
-    }
-    //ANTIDIAGONAL
     if(row <= 2 && col <= 3)
     {
-        if(check(board[col][row],board[col+1][row+1],board[col+2][row+2],board[col+3][row+3]))
-        return true;   
+        if(row === col)
+        {
+            for(let i = 0;i<=row;i++)
+            if(check(board[i][i],board[i+1][i+1],board[i+2][i+2],board[i+3][i+3]))
+            return true;
+        }
+        else if(row <col)
+        {
+            for(let i = 0,j = col-row;i<=row;i++,j++)
+            if(check(board[j][i],board[j+1][i+1],board[j+2][i+2],board[j+3][i+3]))
+            return true;
+        }
+        else if(col < row)
+        {
+            for(let j = 0,i = row - col;j<=row;i++,j++)
+            if(check(board[j][i],board[j+1][i+1],board[j+2][i+2],board[j+3][i+3]))
+            return true;
+        }
     }
+    if(row > 2 && col > 2)
+    {
+        if(row === col)
+        {
+            for(let i = 5;i>=row;i--)
+            if(check(board[i][i],board[i-1][i-1],board[i-2][i-2],board[i-3][i-3]))
+            return true;
+        }
+        else if(row < col)
+        {
+            for(let i = 6,j = 6 - col + row;i>=col;i--,j--)
+            {
+                if(check(board[i][j],board[i-1][j-1],board[i-2][j-2],board[i-3][j-3]))
+                return true;
+            }
+        }
+        else if(row > col)
+        {
+            for(let i = 5,j = 5 - row + col;i>=row;i--,j--)
+            {
+                if(check(board[j][i],board[j-1][i-1],board[j-2][i-2],board[j-3][i-3]))
+                return true;
+            }
+        }
+    }
+    //ANTIDIAGNOL
+    if(row <= 2 && col >=3 )
+    {
+        if(row === 6 - col)
+        {
+            for(let i = 6,j = 0;i>=col;i--,j++)   
+            {
+            if(check(board[i][j],board[i-1][j+1],board[i-2][j+2],board[i-3][j+3]))
+            return true;
+            }
+        }
+        else if(row < 6 - col)
+        {
+            for(let i = row+col, j = 0;i>=col;i--,j++)
+            {
+                if(check(board[i][j],board[i-1][j+1],board[i-2][j+2],board[i-3][j+3]))
+                return true; 
+            }
+        }
+        else 
+        {
+            for(let  i = 6,j = row;i>=col;i--,j++)
+            {
+            if(check(board[i][j],board[i-1][j+1],board[i-2][j+2],board[i-3][j+3]))
+            return true;
+            }
+        }
+    }
+    if(row > 2 && col < 4)
+    {
+        if(col === 5 - row)
+        {
+            for(let  i = 0,j = 5;i<=col;i++,j--)
+            {
+                if(check(board[i][j],board[i+1][j-1],board[i+2][j-2],board[i+3][j-3]))
+                return true;
+            }
+        }
+        else if(col < 5 - row)
+        {
+            for(let  i = col,j = 5;i<=col;i++,j--)
+            {
+                if(check(board[i][j],board[i+1][j-1],board[i+2][j-2],board[i+3][j-3]))
+                return true;
+            }
+        }
+        else
+        {
+            for(let  i = 0,j = row+col;i<=col;i++,j--)
+            {
+                if(check(board[i][j],board[i+1][j-1],board[i+2][j-2],board[i+3][j-3]))
+                return true;
+            }
+        }
+
+    }
+
     return null;
 }
 
-class Game extends React.Component {
+class Game extends React.Component{
     render() {
         return (
             <div>
