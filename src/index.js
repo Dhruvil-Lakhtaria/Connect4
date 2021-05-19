@@ -57,10 +57,10 @@ class Board extends React.Component {
              winner : null });
     }
 
-    miniMax(tempBoard,curPlayer,alpha,beta,depth,track)
+    miniMax(tempBoard,curPlayer,alpha,beta,depth,track,col,row)
     {
         let score;
-        if(depth === 0 || gameOver(tempBoard) || isFull(tempBoard))
+        if(depth === 0 || gameOver(tempBoard,col,row) || isFull(tempBoard))
         {
             return getScore(tempBoard);
         }
@@ -71,7 +71,7 @@ class Board extends React.Component {
         {
           tempBoard[c][track[c]] = curPlayer;
           track[c]++;
-          score = this.miniMax(tempBoard,opp,alpha,beta,depth-1,track);
+          score = this.miniMax(tempBoard,opp,alpha,beta,depth-1,track,c,track[c]-1);
           track[c]--;
           tempBoard[c][track[c]] = null;
 
@@ -104,13 +104,13 @@ class Board extends React.Component {
         return best;
     }
 
-    AIplay()
+    AIplay(col,row)
     { 
-        
-        
-        if(gameOver(this.state.boardValue.slice()))
-        return ;
         const val = this.state.boardValue.slice();
+        
+        if(gameOver(val,col,row))
+        return ;
+
         const curPlayer = this.state.redIsNext?'Red':'Yellow';
         let depth = 8;
         var track = new Array(7).fill(7);
@@ -127,10 +127,10 @@ class Board extends React.Component {
             }
         }
         
-        var pos = this.miniMax(val,curPlayer,-Infinity,Infinity,depth,track);
+        var pos = this.miniMax(val,curPlayer,-Infinity,Infinity,depth,track,col,row);
         
          val[pos][track[pos]] = curPlayer;
-         var curWinner = gameOver(val) ? curPlayer : null;
+         var curWinner = gameOver(val,pos,track[pos]) ? curPlayer : null;
          this.setState({
              boardValue : val,
                         redIsNext : !this.state.redIsNext,
@@ -160,7 +160,7 @@ class Board extends React.Component {
             if(level === null)
             return;
 
-        findResult = gameOver(val);
+        findResult = gameOver(val,col,level);
         var curWinner = findResult? curPlayer : null;
 
         this.setState({
@@ -168,7 +168,7 @@ class Board extends React.Component {
             redIsNext: !this.state.redIsNext,
             winner: curWinner,},
             () =>   {
-                        this.AIplay(); 
+                        this.AIplay(col,level); 
                     }
                     );
     }
@@ -292,7 +292,7 @@ function getScore(board)
 }
 
 function check(a, b, c, d) {
-    if(a === b && b === c && c === d && a)
+    if(a === b && b === c && c === d && a !== null)
     return true;
     return false;
 }
@@ -308,39 +308,43 @@ function isFull(board)
    return true;
 }
 
-function gameOver(board) {
+function gameOver(board,col,row) {
     //VERTICAL
-    for (let c = 0; c < 7; c++)
-        for (let r = 0; r < 3; r++)
-            if (check(board[c][r], board[c][r+1], board[c][r+2], board[c][r+3]))
-                return true;
+    if(row <=2)
+    {
+        if(check(board[col][row],board[col][row+1],board[col][row+2],board[col][row+3]))
+        return true;
+    }
+    else if(row > 2 && row <=5)
+    {
+        if(check(board[col][row],board[col][row-1],board[col][row-2],board[col][row-3]))
+        return true;
+    }
+
     //HORIZONTAL
-            for(let r = 0;r<6;r++)
-            {
-                for(let c = 0;c<4;c++)
-                {
-                    if(check(board[c][r],board[c+1][r],board[c+2][r],board[c+3][r]))
-                    return true;
-                }
-            }
+    if(col<= 3)
+    {
+        if(check(board[col][row],board[col+1][row],board[col+2][row],board[col+3][row]))
+        return true;
+    }
+    else if(col>3 && col <= 6)
+    {
+        if(check(board[col][row],board[col-1][row],board[col-2][row],board[col-3][row]))
+        return true;  
+    }
+
     //DIAGONAL
-            for(let c = 0;c <4;c++)
-            {
-                for(let r = 0;r <3;r++)
-                {
-                    if(check(board[c][r],board[c+1][r+1],board[c+2][r+2],board[c+3][r+3]))
-                    return true;
-                }
-            }
+    if(row >= 3 && row <= 5  && col <= 3)
+    {
+        if(check(board[col][row],board[col+1][row-1],board[col+2][row-2],board[col+3][row-3]))
+        return true;
+    }
     //ANTIDIAGONAL
-            for(let c= 6;c>2;c--)
-            {
-                for(let r = 0;r<3;r++)
-                {
-                    if(check(board[c][r],board[c-1][r+1],board[c-2][r+2],board[c-3][r+3]))
-                    return true;
-                }
-            }
+    if(row <= 2 && col <= 3)
+    {
+        if(check(board[col][row],board[col+1][row+1],board[col+2][row+2],board[col+3][row+3]))
+        return true;   
+    }
     return null;
 }
 
