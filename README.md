@@ -1,3 +1,12 @@
+# CONNECT-4 WEBAPP 
+### It is a 2 player board game(7X6) : 
+
+ ### The opponent's move is calculated with the help of Minimax Algorithm and improved with alpha-beta Pruning.
+ ### Minimax Algorithm basically goes through all the possible moves that can happen(to certain depth, max it can be 42.)
+ ### (NOTE : time complexity = O(7^d))
+ ### and then return the best possible move. 
+ ### Best possible move is calculated by using appropriate scoring based on the current state of the game-board
+    
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
