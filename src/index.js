@@ -165,12 +165,14 @@ class Board extends React.Component {
         var curWinner = findResult? curPlayer : null;
 
         if(this.state.vsComp)
+        {
         this.setState({
             boardValue: val,
             redIsNext: !this.state.redIsNext,
             winner: curWinner,},
             () => this.AIplay(col,level)
                     );
+        }     
         else{
             this.setState({
                 boardValue: val,
@@ -196,10 +198,13 @@ class Board extends React.Component {
     }
 
     render() {
-        const nextPlayer = this.state.redIsNext ? 'COMPUTER' : 'USER'; 
+        const nextPlayer = this.state.vsComp? this.state.redIsNext ? 'COMPUTER' : 'USER' : this.state.redIsNext?'YELLOW':'RED'; 
+        
+        const curPlayer = this.state.redIsNext?'RED':'YELLOW';
         const currVal = this.state.boardValue.slice();
         var checkFull = isFull(currVal);
-        var status = this.state.winner ? nextPlayer + ' WINS ' : checkFull ? 'DRAW': 'CAN YOU BEAT THE COMPUTER';
+        var status = this.state.vsComp?this.state.winner? nextPlayer + ' WINS ':checkFull?'DRAW':'CAN YOU BEAT THE COMPUTER'
+                                      :this.state.winner? nextPlayer + '  WINS ':checkFull?'DRAW': curPlayer + '\'S TURN';
         var curMode = this.state.vsComp? "AI" : "MULTIPLAYER";
         return (
             <div className="game">
@@ -353,7 +358,7 @@ function gameOver(board,col,row){
         }
         else if(col < row)
         {
-            for(let j = 0,i = row - col;j<=row;i++,j++)
+            for(let j = 0,i = row - col;j<=col;i++,j++)
             if(check(board[j][i],board[j+1][i+1],board[j+2][i+2],board[j+3][i+3]))
             return true;
         }
@@ -421,7 +426,7 @@ function gameOver(board,col,row){
                 return true;
             }
         }
-        else if(col < 5 - row)
+        else if(col > 5 - row)
         {
             for(let  i = col,j = 5;i<=col;i++,j--)
             {

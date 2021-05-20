@@ -115,8 +115,7 @@ h1 {
 }
 .mode:hover
 {
-  background-color: rgb(255, 255, 255) ;
-  
+  background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
 }
 .btn
