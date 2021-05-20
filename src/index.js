@@ -39,7 +39,8 @@ class Board extends React.Component {
         this.state = {
             boardValue: new Array(7).fill(null).map(row => new Array(6).fill(null)),
             redIsNext: true,
-            winner: null
+            winner: null,
+            vsComp : true
         }
     }
 
@@ -163,14 +164,28 @@ class Board extends React.Component {
         findResult = gameOver(val,col,level);
         var curWinner = findResult? curPlayer : null;
 
+        if(this.state.vsComp)
         this.setState({
             boardValue: val,
             redIsNext: !this.state.redIsNext,
             winner: curWinner,},
-            () =>   {
-                        this.AIplay(col,level); 
-                    }
+            () => this.AIplay(col,level)
                     );
+        else{
+            this.setState({
+                boardValue: val,
+            redIsNext: !this.state.redIsNext,
+            winner: curWinner
+            });
+        }
+
+    }
+
+    changeMode()
+    {
+        this.setState({
+            vsComp : !this.state.vsComp
+        });
     }
 
     renderCol(i) {
@@ -185,7 +200,7 @@ class Board extends React.Component {
         const currVal = this.state.boardValue.slice();
         var checkFull = isFull(currVal);
         var status = this.state.winner ? nextPlayer + ' WINS ' : checkFull ? 'DRAW': 'CAN YOU BEAT THE COMPUTER';
-        
+        var curMode = this.state.vsComp? "AI" : "MULTIPLAYER";
         return (
             <div className="game">
                 <div className="status">{status}</div>
@@ -198,9 +213,12 @@ class Board extends React.Component {
                 {this.renderCol(5)}
                 {this.renderCol(6)}
                 </div>
-                <div className = "reset">
-                <button className ="reset btn"  onClick = {() => this.handleReset()}>
+                <div className = "btn">
+                <button className ="reset"  onClick = {() => this.handleReset()}>
                     RESET
+                </button>
+                <button className = "mode" onClick = {() => this.changeMode()}>
+                    {curMode}
                 </button>
                 </div>
             </div>
