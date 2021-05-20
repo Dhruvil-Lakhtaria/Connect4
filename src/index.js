@@ -319,7 +319,7 @@ function gameOver(board,col,row){
     }
 
     //DIAGONAL
-    if(row <= 2 && col <= 3)
+    if(row <= 3 && col <= 3)
     {
         if(row === col)
         {
@@ -340,7 +340,7 @@ function gameOver(board,col,row){
             return true;
         }
     }
-    if(row > 2 && col > 2)
+    if(row >= 2 && col > 2)
     {
         if(row === col)
         {
@@ -366,7 +366,7 @@ function gameOver(board,col,row){
         }
     }
     //ANTIDIAGNOL
-    if(row <= 2 && col >=3 )
+    if(row <= 3 && col >=3 )
     {
         if(row === 6 - col)
         {
@@ -393,7 +393,7 @@ function gameOver(board,col,row){
             }
         }
     }
-    if(row > 2 && col < 4)
+    if(row >= 2 && col < 4)
     {
         if(col === 5 - row)
         {
@@ -419,9 +419,7 @@ function gameOver(board,col,row){
                 return true;
             }
         }
-
     }
-
     return null;
 }
 
