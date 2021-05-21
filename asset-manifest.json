@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/Connect4/static/css/main.180bb7b1.chunk.css",
+    "main.js": "/Connect4/static/js/main.5e295220.chunk.js",
+    "main.js.map": "/Connect4/static/js/main.5e295220.chunk.js.map",
+    "runtime-main.js": "/Connect4/static/js/runtime-main.394b7140.js",
+    "runtime-main.js.map": "/Connect4/static/js/runtime-main.394b7140.js.map",
+    "static/js/2.357ed516.chunk.js": "/Connect4/static/js/2.357ed516.chunk.js",
+    "static/js/2.357ed516.chunk.js.map": "/Connect4/static/js/2.357ed516.chunk.js.map",
+    "index.html": "/Connect4/index.html",
+    "static/css/main.180bb7b1.chunk.css.map": "/Connect4/static/css/main.180bb7b1.chunk.css.map",
+    "static/js/2.357ed516.chunk.js.LICENSE.txt": "/Connect4/static/js/2.357ed516.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.394b7140.js",
+    "static/js/2.357ed516.chunk.js",
+    "static/css/main.180bb7b1.chunk.css",
+    "static/js/main.5e295220.chunk.js"
+  ]
+}
