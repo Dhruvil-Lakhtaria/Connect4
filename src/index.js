@@ -409,7 +409,7 @@ function gameOver(board,col,row){
         }
         else 
         {
-            for(let  i = 6,j = row;i>=col;i--,j++)
+            for(let  i = 6,j = row+col-6 ;i>=col;i--,j++)
             {
             if(check(board[i][j],board[i-1][j+1],board[i-2][j+2],board[i-3][j+3]))
             return true;
