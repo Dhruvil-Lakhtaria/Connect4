@@ -7,7 +7,9 @@
  ### and then return the best possible move. 
  ### Best possible move is calculated by using appropriate scoring based on the current state of the game-board
     
+ ## View the deployed webapp @ [Connect4](https://dhruvil-lakhtaria.github.io/Connect4/)
 # Getting Started with Create React App
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
