@@ -99,7 +99,7 @@ class Board extends React.Component {
               break;
           }
         }
-        if(depth === 8)
+        if(depth === 7)
         return pos;
         
         return best;
@@ -113,7 +113,7 @@ class Board extends React.Component {
         return ;
 
         const curPlayer = this.state.redIsNext?'Red':'Yellow';
-        let depth = 8;
+        let depth = 7;
         var track = new Array(7).fill(7);
 
         for(let c = 0;c<7;c++)
@@ -132,7 +132,7 @@ class Board extends React.Component {
         
          val[pos][track[pos]] = curPlayer;
          var curWinner = gameOver(val,pos,track[pos]) ? curPlayer : null;
-         this.setState({
+             this.setState({
              boardValue : val,
                         redIsNext : !this.state.redIsNext,
                         winner :  curWinner
