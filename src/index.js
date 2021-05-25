@@ -70,6 +70,8 @@ class Board extends React.Component {
         var pos = 3;
         for(let c = 0;c<7;c++)
         {
+          if(track[c] <=5)  
+          {
           tempBoard[c][track[c]] = curPlayer;
           track[c]++;
           score = this.miniMax(tempBoard,opp,alpha,beta,depth-1,track,c,track[c]-1);
@@ -98,10 +100,10 @@ class Board extends React.Component {
               if(alpha>beta)
               break;
           }
+          }
         }
-        if(depth === 7)
+        if(depth === 8)
         return pos;
-        
         return best;
     }
 
@@ -113,7 +115,7 @@ class Board extends React.Component {
         return ;
 
         const curPlayer = this.state.redIsNext?'Red':'Yellow';
-        let depth = 7;
+        let depth = 8;
         var track = new Array(7).fill(7);
 
         for(let c = 0;c<7;c++)
