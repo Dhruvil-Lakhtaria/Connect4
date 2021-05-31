@@ -1,15 +1,59 @@
-# CONNECT-4 WEBAPP 
-### It is a 2 player board game(7X6) : 
+# CONNECT-4 WEBAPP with COMPUTER BOT
 
- ### The opponent's move is calculated with the help of Minimax Algorithm and improved with alpha-beta Pruning.
- ### Minimax Algorithm basically goes through all the possible moves that can happen(to certain depth, max it can be 42.)
- ### (NOTE : time complexity = O(7^d))
- ### and then return the best possible move. 
- ### Best possible move is calculated by using appropriate scoring based on the current state of the game-board
-    
- ## View the deployed webapp @ [Connect4](https://dhruvil-lakhtaria.github.io/Connect4/)
+ ### MENTORS
+ - Adithya Rajesh
+ - Anirudh Achal
+
+### MEMBORS
+
+ - Dhruvil Lakhtaria
+ - Pranav RS
+
+# Project Goal
+
+The aim of the project was to implement a connect 4 webapp with an intelligent computer bot which makes the best possible move based on the current board state.
+
+## What is Connect-4
+Connect-4 is a two-player board game in which player tries to connect 4 dots of his color and opponent does the same. The dot is dropped on the lower most empty row of the column chose.
+![CONNECT4 GAME BOARD](readme_images/game-board.png)
+
+## MINIMAX ALGORITH
+
+Minimax algorithm is a backtracking algorithm that has two parts namely maximiser and minimizer. The maximiser tries to maximize the score while the minimizer tries to minimize the score as much as possible.
+
+Each board state has a value associates to it and maximiser tries to make the move such that the value increases while the minimizer does the opposite.
+
+![MINIMAX-TREE](readme/minimax-tree.png)
+
+For Example, consider the above image where the evaluation is done till 4 level and then scores are evaluated. Here score is random but in the project, scoring is done based in heuristic analysis.
+
+Here going down the first branch we get 10 and Infinity, being minimizers turn it selects 10.
+
+Returns 10 to level 2 then now going down the second branch from 1node of level 2 we get 5 and since it is maximisers turn now so it stays 10 rather than taking 5 .
+
+This way each and every possible move to a certain depth is analyzed.
+
+### Alpha-Beta Pruning
+
+
+Further alpha beta pruning is done to improve the time complexity. 
+
+Currently it is O(7^d) where d is the depth.(Which can be max 42(that is the no of cells) but it is not implementable, It is kept 8)
+
+We can avoid going down the recursive tree from where we would not get the desired result or outcome.
+
+We introduce two new parameter alpha and beta which are minimum maximizer score and maximum minimizer score respectively.
+
+Condition is if alpha > beta then we don’t need to evaluate that branch further.
+
+![Alpha-Beta Pruning](readme_images/alpha-beta.png)
+
+In above image going down from 5 to the second branch till seven ,then to 4 since it is minimizers turn 4 is picked over 7,Now observe ,the turn is of minimizer and already 5(alpha) > 4(beta).Now the most favorable outcome we can get after traversing further branches is 4 as now minimizer will pick min(4,further nodes),so going down the further branches is useless and we can cut these branches off.
+Similar process is done everywhere.
+
+## Link To Deployed Webapp : [Connect4](https://dhruvil-lakhtaria.github.io/Connect4/)
+
 # Getting Started with Create React App
-
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -25,11 +69,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
@@ -40,42 +79,11 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+### `npm run deploy`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Creates a new branch gh-pages in your repository and deploys the app.
+Make Sure to change the Homepage address in package.json and give it a appropriate url like `"homepage":"https://github-account-name.github.io/Project-Name",`.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Also add the deploy in scripts in package.json as `"deploy" : "gh-pages -d build"`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Then run the command `npm run deploy`
