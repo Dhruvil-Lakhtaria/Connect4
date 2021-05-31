@@ -250,9 +250,9 @@ function calc(a, b, c, d) {
   if (y === 4 && r === 0) return 5000;
   else if (y === 3 && r === 0) return 50;
   else if (y === 2 && r === 0) return 4;
-  else if (y === 0 && r === 4) return -3000;
-  else if (y === 0 && r === 3) return -100;
-  else if (y === 0 && r === 2) return -10;
+  else if (y === 0 && r === 4) return -5000;
+  else if (y === 0 && r === 3) return -50;
+  else if (y === 0 && r === 2) return -4;
   else return 0;
 }
 
