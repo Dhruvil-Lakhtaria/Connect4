@@ -15,6 +15,7 @@ The aim of the project was to implement a connect 4 webapp with an intelligent c
 
 ## What is Connect-4
 Connect-4 is a two-player board game in which player tries to connect 4 dots of his color and opponent does the same. The dot is dropped on the lower most empty row of the column chose.
+
 ![CONNECT4 GAME BOARD](readme_images/board.JPG)
 
 ## MINIMAX ALGORITH
