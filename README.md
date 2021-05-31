@@ -18,7 +18,7 @@ Connect-4 is a two-player board game in which player tries to connect 4 dots of 
 
 ![CONNECT4 GAME BOARD](readme_images/board.JPG)
 
-## MINIMAX ALGORITH
+## MINIMAX ALGORITHM
 
 Minimax algorithm is a backtracking algorithm that has two parts namely maximiser and minimizer. The maximiser tries to maximize the score while the minimizer tries to minimize the score as much as possible.
 
