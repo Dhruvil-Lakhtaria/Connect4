@@ -25,11 +25,11 @@ Each board state has a value associates to it and maximiser tries to make the mo
 
 ![MINIMAX-TREE](readme_images/minimax-tree.png)
 
-For Example, consider the above image where the evaluation is done till 4 level and then scores are evaluated. Here score is random but in the project, scoring is done based in heuristic analysis.
+For Example, consider the above image where the evaluation is done till 4 level and then scores are evaluated. Here score is random but in the project, scoring is done based on heuristic analysis.
 
 Here going down the first branch we get 10 and Infinity, being minimizers turn it selects 10.
 
-Returns 10 to level 2 then now going down the second branch from 1node of level 2 we get 5 and since it is maximisers turn now so it stays 10 rather than taking 5 .
+Returns 10 to level 2 then now going down the second branch from 1st node of level 2 we get 5 and since it is maximisers turn now so it stays 10 rather than taking 5 .
 
 This way each and every possible move to a certain depth is analyzed.
 
