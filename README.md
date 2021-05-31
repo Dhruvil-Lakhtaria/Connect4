@@ -15,7 +15,7 @@ The aim of the project was to implement a connect 4 webapp with an intelligent c
 
 ## What is Connect-4
 Connect-4 is a two-player board game in which player tries to connect 4 dots of his color and opponent does the same. The dot is dropped on the lower most empty row of the column chose.
-![CONNECT4 GAME BOARD](readme_images/game-board.png)
+![CONNECT4 GAME BOARD](readme_images/board.JPG)
 
 ## MINIMAX ALGORITH
 
@@ -23,7 +23,7 @@ Minimax algorithm is a backtracking algorithm that has two parts namely maximise
 
 Each board state has a value associates to it and maximiser tries to make the move such that the value increases while the minimizer does the opposite.
 
-![MINIMAX-TREE](readme/minimax-tree.png)
+![MINIMAX-TREE](readme_images/minimax-tree.png)
 
 For Example, consider the above image where the evaluation is done till 4 level and then scores are evaluated. Here score is random but in the project, scoring is done based in heuristic analysis.
 
