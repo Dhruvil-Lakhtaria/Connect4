@@ -54,7 +54,7 @@ Similar process is done everywhere.
 
 ## Link To Deployed Webapp : [Connect4](https://dhruvil-lakhtaria.github.io/Connect4/)
 
-# Getting Started with Create React App
+<!-- # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -88,3 +88,4 @@ Make Sure to change the Homepage address in package.json and give it a appropria
 Also add the deploy in scripts in package.json as `"deploy" : "gh-pages -d build"`
 
 Then run the command `npm run deploy`
+ -->
