@@ -4,7 +4,7 @@
  - Adithya Rajesh
  - Anirudh Achal
 
-### MEMBORS
+### MEMBERS
 
  - Dhruvil Lakhtaria
  - Pranav RS
