@@ -16,9 +16,6 @@
   
 
 - Dhruvil Lakhtaria
-
-- Pranav RS
-
   
 
 # Project Goal
